@@ -18,4 +18,15 @@ public class StationCtrl extends Controller
 
 
     }
+
+    public static void addReading(Long id, int code, float temperature, float windSpeed, int windDirection, int pressure)
+    {
+        Reading reading = new Reading(code, temperature, windSpeed, windDirection, pressure);
+        Station station = Station.findById(id);
+        station.readings.add(reading);
+        station.save();
+        redirect ("/stations/" + id);
+    }
+
+
 }
