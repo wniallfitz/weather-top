@@ -8,9 +8,13 @@
   <h1 class="title">
     ${station.name}
   </h1>
-    <span href="/stations/${station.id}" class="icon"> VIEW
-        <i class="fas fa-home"></i>
+
+  <a href="/stations/${station.id}" class="button is-black is-inverted">
+    <span class="icon">
+     <i class="fa-solid fa-folder-open"></i>
     </span>
+  </a>
+  
 </div>
 #{/list}
 #{addstation /}
