@@ -18,7 +18,7 @@ public class StationCtrl extends Controller
 
 
     }
-
+//    public static void addReading(Long id, int code, float temperature, float windSpeed, int pressure, float windDirection, double latitude, double longitude)
     public static void addReading(Long id, int code, float temperature, float windSpeed, int pressure, float windDirection)
     {
         Reading reading = new Reading(code, temperature, windSpeed, pressure, windDirection);
@@ -27,14 +27,5 @@ public class StationCtrl extends Controller
         station.save();
         redirect ("/stations/" + id);
     }
-
-//    public static void addSong(Long id, String title, String artist, int duration)
-//    {
-//        Song song = new Song(title, artist, duration);
-//        Playlist playlist = Playlist.findById(id);
-//        playlist.songs.add(song);
-//        playlist.save();
-//        redirect ("/playlists/" + id);
-//    }
 
 }
