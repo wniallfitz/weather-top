@@ -23,54 +23,238 @@ public class Station extends Model {
         this.longitude = longitude;
     }
 
+//    public String blankReading() {
+//        if (readings.size() == 0) {
+//            return String "No reading";
+//        }
+//    }
+
     public Reading getLatestReading() {
-        Reading latestReading = readings.get(readings.size() - 1);
-        return latestReading;
+        if (readings.size() != 0) {
+            Reading latestReading = readings.get(readings.size() - 1);
+            return latestReading;
+        } else {
+            // Handle the case when there are no readings
+            return null;
+//            return Float.NaN; // Or you can return an appropriate default value
+        }
     }
 
+
     public String getLatestCode() {
-        Reading latestReading = getLatestReading();
-        return latestReading.getWeatherCode();
+        if (readings.size() != 0) {
+            Reading latestReading = getLatestReading();
+            return latestReading.getWeatherCode();
+        } else {
+            return " ";
+        }
     }
 
     public float getLatestTemperature() {
-        Reading latestReading = getLatestReading();
-        return latestReading.temperature;
+        if (readings.size() != 0) {
+            Reading latestReading = getLatestReading();
+            return latestReading.temperature;
+        } else {
+            return 0;
+        }
     }
 
     public float getLatestFahrenheit() {
-        Reading latestReading = getLatestReading();
-        return latestReading.fahrenheit();
+        if (readings.size() != 0) {
+            Reading latestReading = getLatestReading();
+            return latestReading.fahrenheit();
+        } else {
+            return 0;
+        }
     }
 
     public int getLatestWindSpeed() {
-        Reading latestReading = getLatestReading();
-        return latestReading.windBft();
+        if (readings.size() != 0) {
+            Reading latestReading = getLatestReading();
+            return latestReading.windBft();
+        } else {
+            return 0;
+        }
     }
 
     public int getLatestPressure() {
-        Reading latestReading = getLatestReading();
-        return latestReading.pressure;
+        if (readings.size() != 0) {
+            Reading latestReading = getLatestReading();
+            return latestReading.pressure;
+        } else {
+            return 0;
+        }
     }
 
     public String getLatestWindCompassDirection() {
-        Reading latestReading = getLatestReading();
-        return latestReading.windCompassDirection();
+        if (readings.size() != 0) {
+            Reading latestReading = getLatestReading();
+            return latestReading.windCompassDirection();
+        } else {
+            return " ";
+        }
     }
 
     public double getLatestWindChill() {
-        Reading latestReading = getLatestReading();
-        return latestReading.windChill();
+        if (readings.size() != 0) {
+            Reading latestReading = getLatestReading();
+            return latestReading.windChill();
+        } else {
+            return 0;
+        }
     }
 
-//    public static double getLatitude() {
-//        return Reading.getLatitude();
-//    }
-//    public static double getLongitude() {
-//        return Reading.getLongitude();
-//    }
 
+    public Reading getMinTemp() {
+        if (readings.size() != 0) {
+            Reading minTemp = readings.get(0);
+            for (Reading reading : readings) {
+                if (reading.getTemperature() < minTemp.getTemperature()) {
+                    minTemp = reading;
+                }
+            }
+            return minTemp;
+        } else {
+            return null;
+        }
+    }
+
+    public float setMinTemperature() {
+        if (readings.size() != 0) {
+            Reading minTemp = getMinTemp();
+            return minTemp.getTemperature();
+        } else {
+            return 0;
+        }
+    }
+
+    // Temp Max and Min //
+    public Reading getMaxTemp() {
+        if (readings.size() != 0) {
+            Reading maxTemp = readings.get(0);
+            for (Reading reading : readings) {
+                if (reading.getTemperature() > maxTemp.getTemperature()) {
+                    maxTemp = reading;
+                }
+            }
+            return maxTemp;
+        } else {
+            return null;
+        }
+    }
+
+    public float setMaxTemperature() {
+        if (readings.size() != 0) {
+            Reading maxTemp = getMaxTemp();
+            return maxTemp.getTemperature();
+        } else {
+            return 0;
+        }
+    }
+
+    // Wind Max and Min //
+    public Reading getMinWindSpeed() {
+        if (readings.size() != 0) {
+            Reading minWindSpeed = readings.get(0);
+            for (Reading reading : readings) {
+                if (reading.getWindSpeed() < minWindSpeed.getWindSpeed()) {
+                    minWindSpeed = reading;
+                }
+            }
+            return minWindSpeed;
+        } else {
+            return null;
+        }
+    }
+
+    public float setMinWindSpeed() {
+        if (readings.size() != 0) {
+            Reading minWindSpeed = getMinWindSpeed();
+            return minWindSpeed.getWindSpeed();
+        } else {
+            return 0;
+        }
+    }
+
+    public Reading getMaxWindSpeed() {
+        if (readings.size() != 0) {
+            Reading maxWindSpeed = readings.get(0);
+            for (Reading reading : readings) {
+                if (reading.getWindSpeed() > maxWindSpeed.getWindSpeed()) {
+                    maxWindSpeed = reading;
+                }
+            }
+            return maxWindSpeed;
+        } else {
+            return null;
+        }
+    }
+
+    public float setMaxWindSpeed() {
+        if (readings.size() != 0) {
+            Reading maxWindSpeed = getMaxWindSpeed();
+            return maxWindSpeed.getWindSpeed();
+        } else {
+            return 0;
+        }
+    }
+
+    // Pressure Max and Min //
+    public Reading getMinPressure() {
+        if (readings.size() != 0) {
+            Reading minPressure = readings.get(0);
+            for (Reading reading : readings) {
+                if (reading.getPressure() < minPressure.getPressure()) {
+                    minPressure = reading;
+                }
+            }
+            return minPressure;
+        } else {
+            return null;
+        }
+    }
+
+    public int setMinPressure() {
+        if (readings.size() != 0) {
+            Reading minPressure = getMinPressure();
+            return minPressure.getPressure();
+        } else {
+            return 0;
+        }
+    }
+
+    public Reading getMaxPressure() {
+        if (readings.size() != 0) {
+            Reading maxPressure = readings.get(0);
+            for (Reading reading : readings) {
+                if (reading.getPressure() > maxPressure.getPressure()) {
+                    maxPressure = reading;
+                }
+            }
+            return maxPressure;
+        } else {
+            return null;
+        }
+    }
+
+    public int setMaxPressure() {
+        if (readings.size() != 0) {
+            Reading maxPressure = getMaxPressure();
+            return maxPressure.getPressure();
+        } else {
+            return 0;
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
 
 
 

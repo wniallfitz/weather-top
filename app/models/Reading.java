@@ -43,6 +43,7 @@ public class Reading extends Model {
     //getters
     //-------
 
+//    public void getReading() {return Reading;}
     public String getWeatherCode() {return weatherCode();}
 
     public float getTemperature() {
@@ -88,6 +89,10 @@ public class Reading extends Model {
 
     public double windChill() { return Conversions.convertToWindChill(this
         .temperature, this.windSpeed);}
+
+    public static String blankReading(){
+        return "No Reading";
+    }
 
 
 }
