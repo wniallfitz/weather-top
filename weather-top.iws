@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73650404-db8e-482a-93a6-4839cb952262" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/controllers/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Dashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/StationCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/StationCtrl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/dependencies.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/dependencies.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weather-top.iws" beforeDir="false" afterPath="$PROJECT_DIR$/weather-top.iws" afterDir="false" />
     </list>
@@ -86,7 +84,7 @@
       <workItem from="1683376311082" duration="81000" />
       <workItem from="1683376519749" duration="18065000" />
       <workItem from="1684070176932" duration="11810000" />
-      <workItem from="1684175612624" duration="22730000" />
+      <workItem from="1684175612624" duration="24177000" />
     </task>
     <servers />
   </component>
