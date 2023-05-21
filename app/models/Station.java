@@ -11,36 +11,32 @@ import play.db.jpa.Model;
 
 @Entity
 public class Station extends Model {
+    // the instance variables for the Station class are declared below
     public String name;
     public double latitude;
     public double longitude;
-    @OneToMany(cascade = CascadeType.ALL)
-    public List<Reading> readings = new ArrayList<Reading>();
+    @OneToMany(cascade = CascadeType.ALL) // defines a one-to-many relationship between Station and Reading entities, with cascading operations applied to the associated readings.
+    public List<Reading> readings = new ArrayList<Reading>(); // a list object declared to hold the list of readings
 
+    //defines a constructor for the Station class
     public Station(String name, double latitude, double longitude) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-//    public String blankReading() {
-//        if (readings.size() == 0) {
-//            return String "No reading";
-//        }
-//    }
-
+    //returns the most recent reading associated with a station
     public Reading getLatestReading() {
-        if (readings.size() != 0) {
+        if (readings.size() != 0) { //checks if the readings list is empty
             Reading latestReading = readings.get(readings.size() - 1);
             return latestReading;
         } else {
-            // Handle the case when there are no readings
+            // handles the case when there are no readings
             return null;
-//            return Float.NaN; // Or you can return an appropriate default value
         }
     }
 
-
+    // returns the weather code as part of the latest reading
     public String getLatestCode() {
         if (readings.size() != 0) {
             Reading latestReading = getLatestReading();
@@ -50,6 +46,7 @@ public class Station extends Model {
         }
     }
 
+    // returns the temperature (C) as part of the latest reading
     public float getLatestTemperature() {
         if (readings.size() != 0) {
             Reading latestReading = getLatestReading();
@@ -59,6 +56,7 @@ public class Station extends Model {
         }
     }
 
+    // returns the fahrenheit as part of the latest reading
     public float getLatestFahrenheit() {
         if (readings.size() != 0) {
             Reading latestReading = getLatestReading();
@@ -68,6 +66,7 @@ public class Station extends Model {
         }
     }
 
+    // returns the wind speed as part of the latest reading
     public int getLatestWindSpeed() {
         if (readings.size() != 0) {
             Reading latestReading = getLatestReading();
@@ -77,6 +76,7 @@ public class Station extends Model {
         }
     }
 
+    // returns the pressure as part of the latest reading
     public int getLatestPressure() {
         if (readings.size() != 0) {
             Reading latestReading = getLatestReading();
@@ -86,6 +86,7 @@ public class Station extends Model {
         }
     }
 
+    // returns the wind compass direction as part of the latest reading
     public String getLatestWindCompassDirection() {
         if (readings.size() != 0) {
             Reading latestReading = getLatestReading();
@@ -95,6 +96,7 @@ public class Station extends Model {
         }
     }
 
+    // returns the wind chill as part of the latest reading
     public double getLatestWindChill() {
         if (readings.size() != 0) {
             Reading latestReading = getLatestReading();
@@ -104,51 +106,55 @@ public class Station extends Model {
         }
     }
 
-
-    public Reading getMinTemp() {
-        if (readings.size() != 0) {
-            Reading minTemp = readings.get(0);
-            for (Reading reading : readings) {
-                if (reading.getTemperature() < minTemp.getTemperature()) {
-                    minTemp = reading;
-                }
-            }
-            return minTemp;
-        } else {
-            return null;
-        }
-    }
-
-    public float setMinTemperature() {
-        if (readings.size() != 0) {
-            Reading minTemp = getMinTemp();
-            return minTemp.getTemperature();
-        } else {
-            return 0;
-        }
-    }
-
     // Temp Max and Min //
-    public Reading getMaxTemp() {
-        if (readings.size() != 0) {
-            Reading maxTemp = readings.get(0);
-            for (Reading reading : readings) {
-                if (reading.getTemperature() > maxTemp.getTemperature()) {
-                    maxTemp = reading;
+
+    // returns the minimum temperature from the list of readings
+    public Reading getMinTemp() {
+        if (readings.size() != 0) { //checks the readings list is not empty
+            Reading minTemp = readings.get(0); //minTemp is initialised as the first reading in the list
+            for (Reading reading : readings) { //iterates over each reading in the list
+                if (reading.getTemperature() < minTemp.getTemperature()) { //compares the current temp reading with the initial temp reading.
+                    minTemp = reading; //minTemp is updated to the current reading iff the current temp is lower than the initial temp reading
                 }
             }
-            return maxTemp;
+            return minTemp; //returns an up to date min temp after iterating through all of the readings
         } else {
-            return null;
+            return null; //returns null if there are no readings
         }
     }
 
-    public float setMaxTemperature() {
-        if (readings.size() != 0) {
-            Reading maxTemp = getMaxTemp();
-            return maxTemp.getTemperature();
+    //sets the minimum temperature value
+    public float setMinTemperature() {
+        if (readings.size() != 0) { //checks the readings list is not empty
+            Reading minTemp = getMinTemp(); //calls the method to get the min temp
+            return minTemp.getTemperature(); //returns the value of the min temp
         } else {
-            return 0;
+            return 0; //returns a default "0" value if there are no readings
+        }
+    }
+
+    // returns the maximum temperature from the list of readings
+    public Reading getMaxTemp() {
+        if (readings.size() != 0) { //checks the readings list is not empty
+            Reading maxTemp = readings.get(0); //maxTemp is initialised as the first reading in the list
+            for (Reading reading : readings) { //iterates over each reading in the list
+                if (reading.getTemperature() > maxTemp.getTemperature()) { //compares the current temp reading with the initial temp reading.
+                    maxTemp = reading; //maxTemp is updated to the current reading if the current temp is lower than the initial temp reading
+                }
+            }
+            return maxTemp; //returns an up to date max temp after iterating through all of the readings
+        } else {
+            return null; //returns null if there are no readings
+        }
+    }
+
+    //sets the maximum temperature value
+    public float setMaxTemperature() {
+        if (readings.size() != 0) { //checks the readings list is not empty
+            Reading maxTemp = getMaxTemp(); //calls the method to get the max temp
+            return maxTemp.getTemperature(); //returns the value of the max temp
+        } else {
+            return 0; //returns a default "0" value if there are no readings
         }
     }
 

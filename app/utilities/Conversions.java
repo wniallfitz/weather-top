@@ -1,8 +1,8 @@
 package utilities;
 
-public class Conversions {
+public class Conversions { //defines the Conversions class
 
-    public static String convertCodeToWeather(int code) {
+    public static String convertCodeToWeather(int code) { //a method for taking in a weather code and converting it to a corresponding weather description
         if (code == 100) {
             return "Clear";
         } else if (code == 200) {
@@ -20,16 +20,16 @@ public class Conversions {
         } else if (code == 800) {
             return "Thunder";
         } else {
-            return "Error:no weather code reading.";
+            return "Error:no weather code reading."; //returns error if there are no readings found
         }
     }
 
-    public static float convertToFahrenheit(float temperature) {
+    public static float convertToFahrenheit(float temperature) { //a method for converting the celsius temperature reading to fahrenheit
         float fahrenheit = temperature * 9 / 5 + 32;
         return fahrenheit;
     }
 
-    public static int convertWindSpeedToBeaufort(float windSpeed) {
+    public static int convertWindSpeedToBeaufort(float windSpeed) { //a method for taking in a wind speed and converting it to a corresponding Beaufort scale value
         if (windSpeed < 1) {
             return 0;
         } else if (windSpeed <= 5) {
@@ -54,12 +54,11 @@ public class Conversions {
             return 10;
         } else if (windSpeed <= 117) {
             return 11;
-        } else return 12;
+        } else return 12; //returns the max Beaufort scale value for all readings above 117
 
     }
 
-    //method for converting wind direction to compass
-    public static String convertWindDirectionToCompass(float windDirection) {
+    public static String convertWindDirectionToCompass(float windDirection) { //method for taking in wind direction value and converting it to a corresponding compass direction
         if (windDirection <= 11.25) {
             return "North";
         } else if (windDirection <= 33.75) {
@@ -95,14 +94,15 @@ public class Conversions {
         } else if (windDirection <= 360.00) {
             return "North";
         } else
-            return "Wind Compass Reading Error";
+            return "Wind Compass Reading Error"; //returns error message for all other readings
     }
-// method for converting wind chill
+
+// method calculates the wind chill factor based on temperature and wind speed values
     public static double convertToWindChill(float temperature, float windSpeed) {
         double windChill = 13.12 + (0.6215*temperature) - (11.37 * (Math.pow(windSpeed, 0.16))) + (0.3965*temperature) *(Math.pow(windSpeed, 0.16));
         return toTwoDecimalPlaces(windChill);
     }
-    // method for converting number to two decimal places
+    // a private helper method for rounding/converting original values to two decimal places
     private static double toTwoDecimalPlaces(double num){
         return (int) (num *100 ) /100.0;
     }

@@ -24,7 +24,7 @@ public class Dashboard extends Controller //defines a new class 'Dashboard'
     Logger.info ("Adding a new station called " + name); //logs a message and prints it to the log
     Member member = Accounts.getLoggedInMember(); //retrieves the currently logged-in member
     Station station = new Station (name, latitude, longitude); //creates a new instance of the Station class
-    member.stations.add(station); //adds the new station to the stations list assoiated with the member
+    member.stations.add(station); //adds the new station to the stations list associated with the member
     member.save(); //saves changes made to the member object
     redirect ("/dashboard");
   }
